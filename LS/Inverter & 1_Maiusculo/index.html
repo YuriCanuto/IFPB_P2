@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inverter & Maiusculo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <label>Entrada: </label>
+            <input id="enDados" type="text">
+            <label>Saida: </label>
+            <input id="saiDados1" type="text">
+           
+            <label>Saida: </label>
+            <input id="saiDados2" type="text">
+        </div>
+
+        <script>
+            document.querySelector('#enDados').onclick = function() {
+                
+            };
+
+            document.querySelector('#enDados').onkeyup = function() {
+                
+                var dados = document.querySelector('#enDados').value;
+
+                i = dados.length - 1;
+                bola = "";
+
+                for (var x = i; x >= 0; x--) {
+                    bola = bola + dados.charAt(x);
+                }
+
+                document.querySelector('#saiDados1').value = bola;
+                
+                
+                var texto = document.querySelector('#enDados').value;
+                
+                tam = texto.length;
+                textoFinal = "";
+                
+                for(i = 0; i < tam; i++){
+                    if(i === 0) {
+                        textoFinal = texto.charAt(0).toUpperCase();
+                        i++;
+                    }
+                    if(texto.charAt(i) === " "){                        
+                        textoFinal = textoFinal + " " + texto.charAt(i+1).toUpperCase();                        
+                        i = i+2;
+                    } 
+                    textoFinal = textoFinal + texto.charAt(i);
+                }
+                
+                //console.log(textoFinal);
+        
+                document.querySelector('#saiDados2').value = textoFinal;
+            };
+        </script>
+    </body>
+</html>

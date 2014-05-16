@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1400206024 source:c:\users\yuri\desktop\listas ed\listas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"L_seq.h"
+
+1400198059 c:\users\yuri\desktop\listas ed\listas\l_seq.h
+
