@@ -10,133 +10,42 @@
                 width: 30%;
                 height: 200px;
                 background-color: gray;
+                position:relative;
+                overflow: hidden;
             }
-            .teste {
-                background-color: black;
-                width: 20px;
-                height: 100%;
+            .floco{
+                position: relative;
+                background-color: white;
+                width: 5px;
+                height: 5px;
                 float: left;
+                margin-left: 30px;
+                display:inline;
             }
         </style>
     </head>
-    <body onload="nevar()">
-        <div id="pageFull">
-
-            <div class="neve">
-
-            </div>
-            <div class="neve2">
-
-            </div>
-
-            <div class="neve3">
-
-            </div>
-
-        </div>
-
-
+    <body>
+        <div id="pageFull"></div>
         <script>
-            function nevar() {
+        var i;
+        var pos = Math.floor(Math.random());
+        var div = '';
+        var quant = 10;
 
-                i = 0;
+            for(var k=0; k<quant; k++)
+                div += "<div id='neve"+k+"' class='floco'></div>";
+            document.querySelector('#pageFull').innerHTML = div; // colocando as divs
 
-                alt = 10;
-                dist = 20;
-
-                alt2 = 0;
-                dist2 = 30;
-
-                alt3 = 0;
-                dist3 = 50;
-
-                limitAlt = 0;
-                limitAlt2 = 0;
-                limitAlt3 = 0;
-
-                setInterval(function() {
-
-                    var altura = alt + 'px';
-                    var distancia = dist + 'px';
-
-                    var altura2 = alt2 + 'px';
-                    var distancia2 = dist2 + 'px';
-
-                    var altura3 = alt3 + 'px';
-                    var distancia3 = dist3 + 'px';
-
-                    document.querySelector('.neve').style.position = 'relative';
-                    document.querySelector('.neve').style.top = altura;
-                    document.querySelector('.neve').style.left = distancia;
-                    document.querySelector('.neve').style.width = '5px';
-                    document.querySelector('.neve').style.height = '5px';
-                    document.querySelector('.neve').style.backgroundColor = 'white';
-                    document.querySelector('.neve').style.float = 'left';
-
-                    document.querySelector('.neve2').style.position = 'relative';
-                    document.querySelector('.neve2').style.top = altura2;
-                    document.querySelector('.neve2').style.left = distancia2;
-                    document.querySelector('.neve2').style.width = '5px';
-                    document.querySelector('.neve2').style.height = '5px';
-                    document.querySelector('.neve2').style.backgroundColor = 'white';
-                    document.querySelector('.neve2').style.float = 'left';
-
-                    document.querySelector('.neve3').style.position = 'relative';
-                    document.querySelector('.neve3').style.top = altura3;
-                    document.querySelector('.neve3').style.left = distancia3;
-                    document.querySelector('.neve3').style.width = '5px';
-                    document.querySelector('.neve3').style.height = '5px';
-                    document.querySelector('.neve3').style.backgroundColor = 'white';
-                    document.querySelector('.neve3').style.float = 'left';
-                    
-                    
-                    //Math.random() * (max - min) + min; limita o Random do maneira que voce quer    
-                    if (limitAlt <= 0) {
-                        alt = alt + Math.floor((Math.random() * (4 - 1) + 1));
-                        dist = Math.floor((Math.random() * 8) + 10);
-                    }
-                    
-                    if (limitAlt2 <= 0) {
-                        alt2 = alt2 + Math.floor((Math.random() * (4 - 1) + 1));
-                        dist2 = Math.floor((Math.random() * (40 - 30) + 30));
-                    }
-                   
-                    if (limitAlt3 <= 0) {
-                        alt3 = alt3 + Math.floor((Math.random() * (4 - 1) + 1));
-                        dist3 = Math.floor((Math.random() * (60 - 50) + 50));
-                    }  
-
-                    if (alt >= 195) {
-                        alt = 195;
-                        limitAlt = 1;
-                    }
-                    
-                    if (alt2 >= 190) {
-                        alt2 = 190;
-                        limitAlt2 = 1;
-                    }
-                    if (alt3 >= 185) {
-                        alt3 = 185;
-                        limitAlt3 = 1;
+            setInterval(function(){
+                    pos += Math.floor(Math.random()*10);
+                    for (var i = 0; i < quant; i++) {
+                        if(pos < 199){
+                            document.querySelector('#neve'+i).style.top = (i%2 == 0)?(pos+10)+'px':pos+'px';     
+                            document.querySelector('#neve'+i).style.left = Math.floor(Math.random()*(18*i))+'px';
+                        }
                     }
 
-                    i++;                    
-                    if (i == 200) {
-                        alt = 10;
-                        alt2 = 10;
-                        alt3 = 10;
-                        dist = 20;
-                        dist2 = 50;
-                        dist2 = 60;
-                        limitAlt = 0;
-                        limitAlt2 = 0;
-                        limitAlt3 = 0;
-                        i = 0;                        
-                    }
-
-                }, 100);
-
-            }
+                }, 300);
         </script>
     </body>
 </html>
