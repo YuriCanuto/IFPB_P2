@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    <center><p>Para Negrito clique na palavra desejada</p></center>
+    <div>
+        <textarea id="ipt" cols="50" rows="6" style="float: left"></textarea>
+    </div>
+    <div style="float: left; margin-left: 20px; margin-right: 20px;">
+        <button id="btn" >OK</button>
+        <button id="btn2">LIMPAR</button>            
+    </div>
+    <div id="div" style="float: left">
+
+    </div>
+
+    <script type="text/javascript">
+
+        document.querySelector('#btn2').onclick = function() {
+            //quantidade de span do documento
+            var quant = document.getElementsByTagName('span').length;
+            for (i = 0; i < quant; i++) {
+                //remove todos os span 1 a 1
+                document.querySelector('span').remove();
+            }
+        };
+
+        document.querySelector('#btn').onclick = function() {
+
+            vetor = document.querySelector('#ipt').value;
+            //cria um vetor do value atribuido    
+            vetorS = vetor.split(" ");
+            //tamano do vetor
+            tam = vetorS.length;
+
+            for (i = 0; i < tam; i++) {
+                //cria os spans a partir de cada palavra atribuida
+                var s = document.createElement('span');
+                //s.id = '1';
+                s.className = 'teste';
+                s.value = '' + vetorS[i] + '';
+                s.onclick = function() {
+                    if (this.style.fontWeight === 'bold') {
+                        this.style.fontWeight = '';
+                    } else {
+                        this.style.fontWeight = 'bold';
+                    }
+                };
+                s.appendChild(document.createTextNode(vetorS[i] + ' '));
+                //insere cada span na div indicada
+                document.querySelector('#div').appendChild(s);
+            }
+            //limpa o textarea
+            document.querySelector('#ipt').value = "";
+        };
+
+    </script>
+
+</body>
+</html>
