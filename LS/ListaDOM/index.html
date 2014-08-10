@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listagem DOM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            div{
+                margin-bottom: 50px;
+            }
+            table, td, th {
+                border: 1px solid #000;
+            }
+            table {
+                border-collapse: collapse;
+                width: 40%;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <label>Produto</label>
+            <input id="prod" type="text">
+            <label>Quantidade</label>
+            <input id="quant" type="text">
+            <button id="ok">Salvar</button>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td><input class="checkboxAll1" type="checkbox"></td>
+                        <td>Produto</td>
+                        <td>Quantidade</td>
+                        <td>Controle</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <td>
+
+                </td>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input class="checkboxAll2" type="checkbox"></td>
+                        <td>Produto</td>
+                        <td>Quantidade</td>
+                        <td>Controle</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button id="delSel">Deletar Selecionado</button>
+        </div>
+
+        <div>
+            <label>TOTAL</label>
+            <input id="total" type="text" value="0">
+        </div>
+
+
+        <script type="text/javascript">
+
+            k = 0;
+
+            document.querySelector('.checkboxAll1').onclick = function() {
+                checkbox = document.querySelector('.checkboxAll1');
+
+                if (checkbox.checked === true) {
+                    checkboxLista = document.querySelectorAll('.checkbox');
+                    num = window.i;
+                    for (j = 0; j < num - 1; j++) {
+                        checkboxLista[j].checked = true;
+                    }
+                    document.querySelector('.checkboxAll2').checked = true;
+                } else {
+                    checkboxLista = document.querySelectorAll('.checkbox');
+                    num = window.i;
+                    for (j = 0; j < num - 1; j++) {
+                        checkboxLista[j].checked = false;
+                    }
+                    document.querySelector('.checkboxAll2').checked = false;
+                }
+            };
+
+            document.querySelector('.checkboxAll2').onclick = function() {
+                checkbox = document.querySelector('.checkboxAll2');
+                if (checkbox.checked === true) {
+                    checkboxLista = document.querySelectorAll('.checkbox');
+                    num = window.i;
+                    for (j = 0; j < num - 1; j++) {
+                        checkboxLista[j].checked = true;
+                    }
+                    document.querySelector('.checkboxAll1').checked = true;
+                } else {
+                    checkboxLista = document.querySelectorAll('.checkbox');
+                    num = window.i;
+                    for (j = 0; j < num - 1; j++) {
+                        checkboxLista[j].checked = false;
+                    }
+                    document.querySelector('.checkboxAll1').checked = false;
+                }
+            };
+
+            window.i = 1;
+            total = 0;
+
+            document.querySelector('#ok').onclick = function() {
+
+                prod = document.querySelector('#prod').value;
+                quant = document.querySelector('#quant').value;
+
+                if ((prod || quant) === "") {
+                    //estoura um spam de alert
+                } else {
+                    tr = document.createElement('tr');
+                    td1 = document.createElement('td');
+                    td2 = document.createElement('td');
+                    td3 = document.createElement('td');
+                    td4 = document.createElement('td');
+
+                    input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.className = 'checkbox';
+                    td1.appendChild(input);
+
+                    buttonDel = document.createElement('button');
+                    buttonDel.id = i;
+                    buttonDel.appendChild(document.createTextNode('Del'));
+                    buttonDel.onclick = function() {
+                        idTR = 'tr' + this.id;
+                        valQuant = 'q' + this.id;
+                        valorSub = document.querySelector('#' + valQuant).innerHTML;
+
+                        total = total - valorSub;
+                        document.querySelector('#total').value = total;
+
+                        row = document.querySelector('#' + idTR);
+                        row.parentNode.removeChild(row);
+                    };
+
+                    tr.id = 'tr' + i;
+                    td1.id = 'ipt' + i;
+                    td3.id = 'q' + i;
+
+                    td2.appendChild(document.createTextNode(prod));
+                    td3.appendChild(document.createTextNode(quant));
+                    td4.appendChild(buttonDel);
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+
+                    document.querySelector('tbody').appendChild(tr);
+
+                    valorTD = document.querySelector('#q' + i).innerHTML;
+                    valor = parseInt(valorTD);
+                    total = total + valor;
+
+                    document.querySelector('#total').value = total;
+
+                    document.querySelector('#prod').value = '';
+                    document.querySelector('#quant').value = '';
+
+                    i++;
+                }
+
+            };
+
+            document.querySelector('#delSel').onclick = function() {
+                qrow = i;
+                checkboxL = document.querySelectorAll('.checkbox');
+                alert(qrow);
+                for (h = 1; h < qrow; h++) {
+                    alert(h);
+                    if (checkboxL[h].checked === true) {
+                        alert('1');
+                        row = document.querySelector('#tr' + h);                        
+                        row.parentNode.removeChild(row);
+                        alert(h);
+                    }
+                }
+                h = 1;
+            };
+        </script>
+    </body>
+</html>
